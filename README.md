@@ -34,30 +34,30 @@ To write and execute an Assembly language program to perform the factorial of a 
 ## PROGRAM
 ```asm
 ORG 0000H
-MOV DPTR,#4500H
-MOVX A,@DPTR
-MOV R0,A
-INC DPTR
-ACALL FACTORIAL
-MOVX @DPTR,A
-SJMP THIN
-FACTORIAL:DEC R0
-CJNE R0,#01H,PRODUCT
-SJMP THICK
-PRODUCT:MOV B,R0
-MUL AB
-ACALL FACTORIAL
-THICK: RET
-THIN:RET
+MOV R0, #30H     ; R0 points to memory location 30H
+MOV A, @R0       ; Load number into A
+MOV R1, A        ; Copy number to R1 (counter)
+MOV A, #01H      ; A = 1 (initial factorial result)
+FACT:
+MOV B, R1        ; Move counter to B
+MUL AB           ; A = A × B
+DJNZ R1, FACT    ; Decrement R1 and repeat until zero
+MOV 31H, A       ; Store result in 31H
 END
 
 ```
 OUTPUT
 
-(Keil output screenshot can be inserted here)
+<img width="739" height="408" alt="image" src="https://github.com/user-attachments/assets/8decfdcc-b9b2-46e9-a341-6dc803082c9e" />
+
 
 ---
 MANUAL CALCULATIONS
+
+
+<img width="471" height="372" alt="WhatsApp Image 2026-05-22 at 7 43 36 AM" src="https://github.com/user-attachments/assets/046989c1-def7-456c-9207-4bb0bcbb2698" />
+
+
 
 ---
 
